@@ -1,7 +1,15 @@
-const reactStrategy = require('./strategies/react')
-
 const tocToArray = require('./tocToArray')
 
-reactStrategy().then(tocToArray).then(docArray => {
-  console.warn(JSON.stringify(docArray))
-})
+const strategies = {
+  react: require('./strategies/react')
+}
+
+function run (strategyId) {
+  return new Promise(function (resolve, reject) {
+    strategies[strategyId]().then(tocToArray).then(docArray => {
+      resolve(docArray)
+    }).catch(reject)
+  })
+}
+
+module.exports = run

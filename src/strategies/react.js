@@ -9,28 +9,30 @@ function reactStrategy () {
     axios.get(DOCURL)
     .then(res => {
       var $ = cheerio.load(res.data)
-      var tmpObject = []
+      var tocArray = []
 
       $('.nav-docs-section').each(function (index, el) {
-        var tocSection = {
-          title: $(el).find('h3').text(),
-          content: []
-        }
+        var parentName = $(el).find('h3').text()
+
+        tocArray.push({
+          title: parentName,
+          level: 1
+        })
 
         $(this).find('a').each(function (childIndex, childEl) {
-          tocSection.content.push({
+          tocArray.push({
+            parent: parentName,
+            level: 2,
             title: $(childEl).text(),
             url: url.resolve(DOCURL, $(childEl).attr('href'))
           })
         })
-
-        tmpObject.push(tocSection)
       })
 
-      resolve({
+      resolve([{
         title: 'React',
-        content: tmpObject
-      })
+        level: 0
+      }].concat(tocArray))
     })
   })
 }

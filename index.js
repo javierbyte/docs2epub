@@ -1,40 +1,55 @@
 var express = require('express')
 var app = express()
 
-var read = require('node-readability')
+var run = require('./src/run')
+
+var _ = require('lodash')
+var epub = require('epub-gen')
+
+function getHtml (tocArray) {
+  return _.map(tocArray, tocEl => {
+    if (tocEl.result) {
+      return `
+        <article>
+          <h3>${tocEl.result.title}</h3>
+          <div>${tocEl.result.content}</div>
+        </article>
+      `
+    }
+
+    if (tocEl.level === 0) return `<h1>${tocEl.title}</h1>`
+    if (tocEl.level === 1) return `<h2>${tocEl.title}</h2>`
+
+    return ''
+  }).join('')
+}
+
+function getEpubOptions (tocArray) {
+  return {
+    title: tocArray[0].title,
+    author: '', // *Required, name of the author.
+    content: _.chain(tocArray).filter(el => el.result).map(tocEl => {
+      return {
+        title: tocEl.title,
+        data: tocEl.result ? tocEl.result.content : ''
+      }
+    }).value()
+  }
+}
 
 app.get('/', function (req, res) {
-  read('https://expressjs.com/en/4x/api.html', function (err, article) {
-    if (err) return console.error(err)
+  run('react').then(results => {
+    var epubOptions = getEpubOptions(results)
 
-    console.log(article.content)
-    console.log(article.title)
-    console.log(article.document)
-    article.close()
+    console.log(epubOptions)
 
-    res.send('<h1>' + article.title + '</h1>' + article.content)
+    new epub(epubOptions, 'epub/react.epub')
+    res.send(getHtml(results))
+  }).catch(err => {
+    console.log(err.stack)
+    res.send(err)
   })
 })
 
+console.log('\nRunning on port 3000')
 app.listen(3000)
-
-/*
-
-read('https://facebook.github.io/react/docs/getting-started.html', function(err, article, meta) {
-  // Main Article
-  console.log(article.content);
-  // Title
-  console.log(article.title);
-
-  // HTML Source Code
-  console.log(article.html);
-  // DOM
-  console.log(article.document);
-
-  // Response Object from Request Lib
-  console.log(meta);
-
-  // Close article to clean up jsdom and prevent leaks
-  article.close();
-});
-*/
