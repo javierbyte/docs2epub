@@ -1,0 +1,25 @@
+{
+  "name": "docs2epub",
+  "version": "0.1.0",
+  "description": "ever wanted to have your favorite library docs on epub format? search no more ;)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javierbyte/docs2epub.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javierbyte/docs2epub/issues"
+  },
+  "homepage": "https://github.com/javierbyte/docs2epub#readme",
+  "dependencies": {
+    "node-readability": "^2.2.0"
+  },
+  "devDependencies": {
+    "standard": "^8.0.0"
+  }
+}
