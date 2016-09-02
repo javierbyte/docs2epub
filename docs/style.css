@@ -104,6 +104,36 @@ h2 {
   background: #27AE60;
   content: 'Stable'
 }
+
+.badge-explication {
+  padding-bottom: 1rem;
+}
+.badge-explication-item {
+  padding: 0.25rem 0;
+  font-size: 14px;
+  line-height: 1;
+}
+.badge-explication-item-descriptor {
+  padding: 0.25rem 0.5rem;
+}
+.badge {
+  text-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.25rem;
+}
+.badge.-alpha {
+  background: #C0392B;
+}
+.badge.-beta {
+  background: #E67E22;
+}
+.badge.-stable {
+  background: #27AE60;
+}
+
 .book-title {
   font-weight: 700;
   margin-top: 1rem;
