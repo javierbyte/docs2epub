@@ -1,0 +1,90 @@
+body {
+
+}
+
+body, input, textarea {
+  font-family: Actor;
+  color: #333;
+  font-size: 18px;
+}
+
+h1, h2, h3, h4 {
+  font-family: Roboto Slab;
+}
+
+h1, h2 {
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+
+h1 {
+  font-size: 3.8em;
+}
+h2 {
+  font-size: 2em;
+}
+
+.w {
+  margin: 0 auto;
+  max-width: 980px;
+}
+.section {
+  padding: 5vmin 0;
+}
+
+.slogan {
+  font-size: 1.3em;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.header {
+  background: #fcfcfc;
+  overflow: hidden;
+}
+.ereader {
+  margin-bottom: -8rem;
+}
+
+.gallery {
+  background: #555 url(gallery-bg.jpg) repeat;
+  color: #ddd;
+}
+.gallery h1, .gallery h2 {
+  color: #fff;
+}
+.gallery a {
+  color: #ddd;
+  text-decoration: underline;
+}
+.single-line {
+  padding: 1rem;
+}
+.book {
+  width: 9em;
+  height: 12em;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/React.js_logo.svg/2000px-React.js_logo.svg.png) no-repeat center #222;
+  background-size: 5em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 0, rgba(0, 0, 0, 0.1) 0 1px 5px;
+}
+.book-container:nth-child(even) .book {
+  background-image: url(https://avatars0.githubusercontent.com/u/139426?v=3&s=400) !important;
+  background-color: #fff;
+}
+.book-title {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+.book-controls {
+  padding-top: 0.5rem;
+}
+.book-controls-control {
+  padding: 0.25rem 0.5rem;
+  border:1px solid #777;
+  border-radius: 2rem;
+  color: #eee;
+  font-size: 0.75em;
+  text-decoration: none !important;
+}
