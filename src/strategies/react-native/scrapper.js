@@ -2,7 +2,9 @@ const cheerio = require('cheerio')
 const axios = require('axios')
 const url = require('url')
 
-const DOCURL = 'https://facebook.github.io/react/docs/getting-started.html'
+const CONFIG = require('./index.js')
+
+const DOCURL = 'https://facebook.github.io/react-native/docs/getting-started.html'
 
 function reactStrategy () {
   return new Promise(function (resolve, reject) {
@@ -24,15 +26,15 @@ function reactStrategy () {
             parent: parentName,
             level: 2,
             title: $(childEl).text(),
-            url: url.resolve(DOCURL, $(childEl).attr('href'))
+            url: url.resolve(DOCURL, $(childEl).attr('href')).replace('/docs/docs', '/docs')
           })
         })
       })
 
       resolve([{
-        title: 'React',
+        title: CONFIG.title,
         level: 0
-      }].concat(tocArray))
+      }].concat(tocArray.slice(0, 3)))
     })
   })
 }

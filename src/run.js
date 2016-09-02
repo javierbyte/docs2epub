@@ -1,12 +1,16 @@
 const tocToArray = require('./tocToArray')
 
-const strategies = {
-  react: require('./strategies/react')
+const scrappers = {
+  'react': require('./strategies/react/scrapper'),
+  'react-native': require('./strategies/react-native/scrapper'),
+  'lodash': require('./strategies/lodash/scrapper'),
+  'underscore': require('./strategies/underscore/scrapper'),
+  'vue': require('./strategies/vue/scrapper')
 }
 
 function run (strategyId) {
   return new Promise(function (resolve, reject) {
-    strategies[strategyId]().then(tocToArray).then(docArray => {
+    scrappers[strategyId]().then(tocToArray).then(docArray => {
       resolve(docArray)
     }).catch(reject)
   })

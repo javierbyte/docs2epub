@@ -12,18 +12,15 @@ We should return a "toc" object, that looks like this:
 
 var _ = require('lodash')
 var read = require('node-readability')
-var cheerio = require('cheerio')
 
-function htmlFilter (content) {
-  var $ = cheerio.load(content)
-  $('.hash-link').remove()
-  $('.edit-page-link').remove()
-  return $.html()
-}
+var getAboutPage = require('./getAboutPage')
 
-function resolveTocEl (tocEl) {
+function resolveTocEl (tocEl, tocObj) {
+  var cleanHtml = tocObj.cleanHtml || function (noop) {
+    return noop
+  }
+
   return new Promise(function (resolve, reject) {
-    console.log('READ', tocEl.url)
     read(tocEl.url, function (err, article) {
       console.log('READED', tocEl.url)
 
@@ -33,7 +30,7 @@ function resolveTocEl (tocEl) {
       }
 
       var title = article.title
-      var content = htmlFilter(article.content)
+      var content = cleanHtml(article.content)
       article.close()
 
       resolve(_.assign(tocEl, {
@@ -46,31 +43,32 @@ function resolveTocEl (tocEl) {
   })
 }
 
-function getContent (tocArray) {
-  console.log('Get content')
+function getContent (tocContent, tocObj) {
   return new Promise(function (resolve, reject) {
-    if (_.every(tocArray, toc => {
+    if (_.every(tocContent, toc => {
       return !toc.url || toc.result
     })) {
-      resolve(tocArray)
+      resolve(tocContent)
       return
     }
 
-    var toSearchContentKey = _.findKey(tocArray, toc => {
+    var toSearchContentKey = _.findKey(tocContent, toc => {
       return !(!toc.url || toc.result)
     })
 
-    resolveTocEl(tocArray[toSearchContentKey]).then(res => {
-      tocArray[toSearchContentKey] = res
-      resolve(getContent(tocArray))
+    resolveTocEl(tocContent[toSearchContentKey], tocObj).then(res => {
+      tocContent[toSearchContentKey] = res
+      resolve(getContent(tocContent, tocObj))
     }).catch(reject)
   })
 }
 
 function tocToArray (toc) {
   return new Promise(function (resolve, reject) {
-    getContent(toc).then(res => {
-      resolve(res)
+    getContent(toc.content, toc).then(res => {
+      resolve(_.assign({}, toc, {
+        content: [getAboutPage(toc)].concat(res)
+      }))
     }).catch(reject)
   })
 }

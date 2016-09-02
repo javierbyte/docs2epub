@@ -1,34 +1,18 @@
-var express = require('express')
-var app = express()
-
 var run = require('./src/run')
 
 var _ = require('lodash')
 var epub = require('epub-gen')
+var fs = require('fs')
 
-function getHtml (tocArray) {
-  return _.map(tocArray, tocEl => {
-    if (tocEl.result) {
-      return `
-        <article>
-          <h3>${tocEl.result.title}</h3>
-          <div>${tocEl.result.content}</div>
-        </article>
-      `
-    }
+const tocObjToHtml = require('./src/tocObjToHtml')
 
-    if (tocEl.level === 0) return `<h1>${tocEl.title}</h1>`
-    if (tocEl.level === 1) return `<h2>${tocEl.title}</h2>`
-
-    return ''
-  }).join('')
-}
-
-function getEpubOptions (tocArray) {
+function getEpubOptions (tocObj) {
   return {
-    title: tocArray[0].title,
-    author: '', // *Required, name of the author.
-    content: _.chain(tocArray).filter(el => el.result).map(tocEl => {
+    title: tocObj.title,
+    cover: tocObj.cover,
+    author: tocObj.author,
+    css: 'code,pre{font-size: 0.9em;background:#fafafa;padding:0.5em;display:block;margin:0.5rem 0}',
+    content: _.chain(tocObj.content).filter(el => el.result).map(tocEl => {
       return {
         title: tocEl.title,
         data: tocEl.result ? tocEl.result.content : ''
@@ -37,19 +21,14 @@ function getEpubOptions (tocArray) {
   }
 }
 
-app.get('/', function (req, res) {
-  run('react').then(results => {
-    var epubOptions = getEpubOptions(results)
+var strategyToRun = 'react'
 
-    console.log(epubOptions)
-
-    new epub(epubOptions, 'epub/react.epub')
-    res.send(getHtml(results))
-  }).catch(err => {
-    console.log(err.stack)
-    res.send(err)
+run(strategyToRun).then(tocArray => {
+  var epubOptions = getEpubOptions(tocArray)
+  new epub(epubOptions, 'docs/download/' + strategyToRun + '.epub')
+  fs.writeFile('docs/download/' + strategyToRun + '.html', tocObjToHtml(tocArray), (err, res) => {
+    console.log({err, res})
   })
+}).catch(err => {
+  console.log(err.stack)
 })
-
-console.log('\nRunning on port 3000')
-app.listen(3000)

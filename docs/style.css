@@ -60,18 +60,25 @@ h2 {
   text-decoration: underline;
 }
 .single-line {
-  padding: 1rem;
+  padding: 0.5rem;
+}
+
+.book-gallery {
+  overflow: auto;
+}
+.book-container {
+  width: 25%;
+  float: left;
+  margin-top: 1rem;
 }
 .book {
-  width: 9em;
-  height: 12em;
-  background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/React.js_logo.svg/2000px-React.js_logo.svg.png) no-repeat center #222;
-  background-size: 5em;
+  width: 100%;
+  height: 0;
+  padding-bottom: 133.33%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #808080;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 0, rgba(0, 0, 0, 0.1) 0 1px 5px;
-}
-.book-container:nth-child(even) .book {
-  background-image: url(https://avatars0.githubusercontent.com/u/139426?v=3&s=400) !important;
-  background-color: #fff;
 }
 .book-title {
   font-weight: 700;
@@ -87,4 +94,14 @@ h2 {
   color: #eee;
   font-size: 0.75em;
   text-decoration: none !important;
+}
+.book-controls-control:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+.github-corner {
+  position: fixed;
+  top: 0;
+  right: 0;
 }
