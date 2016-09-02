@@ -21,7 +21,7 @@ function getEpubOptions (tocObj) {
   }
 }
 
-var strategyToRun = 'express'
+var strategyToRun = 'angular2'
 
 run(strategyToRun).then(tocArray => {
   var epubOptions = getEpubOptions(tocArray)

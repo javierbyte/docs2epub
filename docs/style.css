@@ -80,6 +80,30 @@ h2 {
   background-color: #808080;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 0, rgba(0, 0, 0, 0.1) 0 1px 5px;
 }
+.book::after {
+  display: block;
+  position: absolute;
+  bottom: 0.5rem;
+  right: -0.5rem;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75em;
+  text-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0;
+}
+.book.-alpha::after {
+  background: #C0392B;
+  content: 'Alpha'
+}
+.book.-beta::after {
+  background: #E67E22;
+  content: 'Beta'
+}
+.book.-stable::after {
+  background: #27AE60;
+  content: 'Stable'
+}
 .book-title {
   font-weight: 700;
   margin-top: 1rem;

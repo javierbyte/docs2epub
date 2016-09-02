@@ -18,6 +18,7 @@ var getHtml = function (content) {
       }
 
       code, pre {
+        font-family: 'monospace'
         font-size: 15px;
         background: #fafafa;
         padding: 0.5rem;
@@ -35,7 +36,7 @@ var getHtml = function (content) {
     </style>
   </head>
   <body>
-    <div class="main">
+    <div id="main">
       ${content}
     </div>
   </body>

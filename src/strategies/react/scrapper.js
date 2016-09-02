@@ -8,7 +8,7 @@ const CONFIG = require('./index.js')
 
 const DOCURL = 'https://facebook.github.io/react/docs/getting-started.html'
 
-function reactStrategy () {
+function strategy () {
   return new Promise(function (resolve, reject) {
     axios.get(DOCURL)
     .then(res => {
@@ -44,4 +44,4 @@ function reactStrategy () {
   })
 }
 
-module.exports = reactStrategy
+module.exports = strategy
