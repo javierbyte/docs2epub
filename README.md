@@ -5,6 +5,7 @@ Get your favorite docs as ebooks!
 # Library:
 * React [[epub]](http://javier.xyz/docs2epub/download/react.epub) [[html]](http://javier.xyz/docs2epub/download/react.html).
 * Underscore [[epub]](http://javier.xyz/docs2epub/download/underscore.epub) [[html]](http://javier.xyz/docs2epub/download/underscore.html).
+* express [[epub]](http://javier.xyz/docs2epub/download/express.epub) [[html]](http://javier.xyz/docs2epub/download/express.html).
 
 # Features:
 * Pluggable system to add more documentation sources.

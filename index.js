@@ -21,7 +21,7 @@ function getEpubOptions (tocObj) {
   }
 }
 
-var strategyToRun = 'react'
+var strategyToRun = 'express'
 
 run(strategyToRun).then(tocArray => {
   var epubOptions = getEpubOptions(tocArray)

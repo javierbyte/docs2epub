@@ -12,8 +12,21 @@ We should return a "toc" object, that looks like this:
 
 var _ = require('lodash')
 var read = require('node-readability')
+var cheerio = require('cheerio')
 
 var getAboutPage = require('./getAboutPage')
+
+function htmlSafe (content) {
+  var $ = cheerio.load(content)
+
+  var elToRemove = [
+    'script'
+  ]
+
+  _.forEach(elToRemove, el => $(el).remove())
+
+  return $.html()
+}
 
 function resolveTocEl (tocEl, tocObj) {
   var cleanHtml = tocObj.cleanHtml || function (noop) {
@@ -30,7 +43,8 @@ function resolveTocEl (tocEl, tocObj) {
       }
 
       var title = article.title
-      var content = cleanHtml(article.content)
+      var content = htmlSafe(cleanHtml(article.content))
+
       article.close()
 
       resolve(_.assign(tocEl, {

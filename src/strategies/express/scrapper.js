@@ -6,9 +6,9 @@ function strategy () {
     resolve(
       _.assign({}, CONFIG, {
         content: [{
-          title: 'Underscore',
+          title: 'Express',
           level: 0,
-          url: 'https://vuejs.org/api/'
+          url: 'http://expressjs.com/en/api.html'
         }]
       })
     )

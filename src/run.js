@@ -5,7 +5,8 @@ const scrappers = {
   'react-native': require('./strategies/react-native/scrapper'),
   'lodash': require('./strategies/lodash/scrapper'),
   'underscore': require('./strategies/underscore/scrapper'),
-  'vue': require('./strategies/vue/scrapper')
+  'vue': require('./strategies/vue/scrapper'),
+  'express': require('./strategies/express/scrapper')
 }
 
 function run (strategyId) {
