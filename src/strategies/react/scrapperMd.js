@@ -20,13 +20,13 @@ var docList = [{
   title: 'Displaying data',
   url: 'https://raw.githubusercontent.com/facebook/react/master/docs/docs/02-displaying-data.md'
 }, {
-  title: 'Jsx in depth',
+  title: 'JSX in depth',
   url: 'https://raw.githubusercontent.com/facebook/react/master/docs/docs/02.1-jsx-in-depth.md'
 }, {
-  title: 'Jsx spread',
+  title: 'JSX spread',
   url: 'https://raw.githubusercontent.com/facebook/react/master/docs/docs/02.2-jsx-spread.md'
 }, {
-  title: 'Jsx gotchas',
+  title: 'JSX gotchas',
   url: 'https://raw.githubusercontent.com/facebook/react/master/docs/docs/02.3-jsx-gotchas.md'
 }, {
   title: 'Interactivity and dynamic uis',

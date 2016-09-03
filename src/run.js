@@ -2,15 +2,10 @@ const tocToArray = require('./tocToArray')
 
 const scrappers = {
   'react': require('./strategies/react/scrapperMd'),
-  'lodash': require('./strategies/lodash/scrapper'),
+  'lodash': require('./strategies/lodash/scrapperMd'),
   'underscore': require('./strategies/underscore/scrapper'),
-  'vue': require('./strategies/vue/scrapper'),
   'express': require('./strategies/express/scrapper'),
-  'elm': require('./strategies/elm/scrapper'),
-  'mobx': require('./strategies/mobx/scrapper'),
-  'sass': require('./strategies/sass/scrapper'),
-  'angular2': require('./strategies/angular2/scrapper'),
-  'socketio': require('./strategies/socketio/scrapper')
+  'angular2': require('./strategies/angular2/scrapper')
 }
 
 function run (strategyId) {

@@ -82,7 +82,7 @@ function generateEpubFromMarkdown (docObj) {
           fs.writeFile(`_tmp/epub/${slug(docObj.title)}/${tocEl.index}.md`, tocEl.result.content, cb)
         }
       }, (err, res) => {
-        var pandocCommand = `pandoc -s -o docs/download/${docObj.title}.epub _tmp/epub/${slug(docObj.title)}/meta.txt `
+        var pandocCommand = `pandoc -s -o docs/download/${docObj.title.toLowerCase()}.epub _tmp/epub/${slug(docObj.title)}/meta.txt `
         pandocCommand += _.map(docObj.content, tocEl => `_tmp/epub/${slug(docObj.title)}/${tocEl.index}.md `).join('')
 
         if (docObj.cover) {
@@ -93,7 +93,9 @@ function generateEpubFromMarkdown (docObj) {
           pandocCommand += `--epub-stylesheet=${docObj.epubStylesheet} `
         }
 
-        pandocCommand += '--table-of-contents --toc-depth=2'
+        if (docObj.epubTOCDepth) {
+          pandocCommand += `--table-of-contents --toc-depth=${docObj.epubTOCDepth}`
+        }
 
         generateEpubMetadata(docObj).then(() => {
           execCommand(pandocCommand, () => {
@@ -105,7 +107,7 @@ function generateEpubFromMarkdown (docObj) {
   })
 }
 
-var strategyToRun = 'react'
+var strategyToRun = 'lodash'
 
 run(strategyToRun).then(tocArray => {
   if (tocArray.type === 'MARKDOWN') {

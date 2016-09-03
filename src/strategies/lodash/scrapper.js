@@ -1,3 +1,5 @@
+const _ = require('lodash')
+
 const cheerio = require('cheerio')
 const axios = require('axios')
 const url = require('url')
@@ -8,15 +10,6 @@ const DOCURL = 'https://facebook.github.io/react/docs/getting-started.html'
 
 function strategy () {
   return new Promise(function (resolve, reject) {
-    resolve([{
-      title: CONFIG.title,
-      cover: CONFIG.cover,
-      author: CONFIG.author,
-      level: 0,
-      url: 'https://lodash.com/docs/4.15.0'
-    }])
-
-    /*
     axios.get(DOCURL)
     .then(res => {
       var $ = cheerio.load(res.data)
@@ -24,6 +17,8 @@ function strategy () {
 
       $('.nav-docs-section').each(function (index, el) {
         var parentName = $(el).find('h3').text()
+
+        if (parentName === 'Community Resources') return
 
         tocArray.push({
           title: parentName,
@@ -40,14 +35,13 @@ function strategy () {
         })
       })
 
-      resolve([{
-        title: CONFIG.title,
-        cover: CONFIG.cover,
-        author: CONFIG.author,
-        level: 0
-      }].concat(tocArray.slice(0, 3)))
+      resolve(
+        _.assign({}, CONFIG, {
+          type: 'HTML',
+          content: tocArray
+        })
+      )
     })
-    */
   })
 }
 

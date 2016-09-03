@@ -4,6 +4,7 @@ var CONFIG = {
   cover: './src/strategies/react/cover.jpg',
 
   epubStylesheet: './src/strategies/react/epub.css',
+  epubTOCDepth: 1,
 
   docsUrl: 'https://facebook.github.io/react/docs/getting-started.html',
   repoUrl: 'https://github.com/facebook/react',
