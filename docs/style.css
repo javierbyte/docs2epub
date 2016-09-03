@@ -1,5 +1,5 @@
 body {
-
+  background: #fcfcfc;
 }
 
 body, input, textarea {
@@ -163,4 +163,8 @@ h2 {
   position: fixed;
   top: 0;
   right: 0;
+}
+
+.footer {
+  background: #eee;
 }
