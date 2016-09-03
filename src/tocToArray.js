@@ -37,6 +37,8 @@ function resolveTocEl (tocEl, tocObj) {
     read(tocEl.url, function (err, article) {
       console.log('READED', tocEl.url)
 
+      console.log(article.content)
+
       if (err || !article) {
         reject(err)
         return
@@ -81,7 +83,7 @@ function tocToArray (toc) {
   return new Promise(function (resolve, reject) {
     getContent(toc.content, toc).then(res => {
       resolve(_.assign({}, toc, {
-        content: [getAboutPage(toc)].concat(res)
+        content: res
       }))
     }).catch(reject)
   })

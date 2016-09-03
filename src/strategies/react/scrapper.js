@@ -37,6 +37,7 @@ function strategy () {
 
       resolve(
         _.assign({}, CONFIG, {
+          type: 'HTML',
           content: tocArray
         })
       )
