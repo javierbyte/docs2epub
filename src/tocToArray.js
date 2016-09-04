@@ -1,13 +1,27 @@
 /*
-We should return a "toc" object, that looks like this:
+We should return a "dobObj" object, that looks like this:
 
 {
-  title: 'react',
+  title: 'React', // name
+  author: 'Facebook', // author
+  cover: './src/strategies/react/cover.jpg', // cover url, relative or absolute
+
+  epubStylesheet: './src/strategies/react/epub.css', // custom css url
+  epubTOCDepth: 1,
+
+  docsUrl: 'https://facebook.github.io/react/docs/getting-started.html',
+  repoUrl: 'https://github.com/facebook/react',
+  licenceUrl: 'https://raw.githubusercontent.com/facebook/react/master/LICENSE-docs',
+
+  type: 'MARKDOWN', // MARKDOWN or HTML
   content: [{
     title: 'something',
     url: 'http://javier.xyz'
   }]
 }
+
+The `content.url` property should be either a html website (server side rendering) or a markdown file.
+Remember to specify a `type` `MARKDOWN` o `HTML`.
 */
 
 var _ = require('lodash')

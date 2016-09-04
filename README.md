@@ -13,9 +13,16 @@ Get your favorite docs as ebooks!
 # Create generate your own documentation
 The objective of this tool is to be a ready to go documentation parser and ebook generator (from scraping documentation sites or markdown).
 
-It has a central processing and epub generator based on strategies ().
+It has a central processing and epub generator based on [strategies](https://github.com/javierbyte/docs2epub/tree/master/src/strategies).
 
-If you want to add your own ebook generator you'll have to add a 'strategy' to the the `/src/strategies/` dir and return a `docObj` object as described on ().
+If you want to add your own ebook generator you'll have to add a 'strategy' to the the `/src/strategies/` dir that returns  a `docObj` object as described on [tocToArray.js](https://github.com/javierbyte/docs2epub/blob/master/src/tocToArray.js). And then require it on [run.js](https://github.com/javierbyte/docs2epub/blob/master/src/run.js).
+
+Then run
+```
+  node index.js --project <yourprojectid>
+```
+
+With `yourprojectid` being the key on the `run.js` require.
 
 # Features
 * Pluggable system to add more documentation sources.

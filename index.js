@@ -9,6 +9,16 @@ var moment = require('moment')
 
 const tocObjToHtml = require('./src/tocObjToHtml')
 
+var strategyToRunId = Math.max(process.argv.indexOf('--project'), process.argv.indexOf('-p'))
+var strategyToRun = (strategyToRunId !== -1) && _.get(process.argv, parseInt(strategyToRunId) + 1)
+
+if (!strategyToRun) {
+  console.error('Please pass an --project argument with the ID of the project that you want to compile')
+  process.exit(1)
+}
+
+console.log(`Scrapping ${strategyToRun}`)
+
 function getEpubOptions (tocObj) {
   return {
     title: tocObj.title,
@@ -83,6 +93,10 @@ function generateEpubFromMarkdown (docObj) {
           fs.writeFile(`_tmp/epub/${slug(docObj.title)}/${tocEl.index}.md`, tocEl.result.content, cb)
         }
       }, (err, res) => {
+        if (err) {
+          reject(err)
+          return
+        }
         var pandocCommand = `pandoc -s -o docs/download/${docObj.title.toLowerCase()}.epub _tmp/epub/${slug(docObj.title)}/meta.txt `
         pandocCommand += _.map(docObj.content, tocEl => `_tmp/epub/${slug(docObj.title)}/${tocEl.index}.md `).join('')
 
@@ -107,8 +121,6 @@ function generateEpubFromMarkdown (docObj) {
     })
   })
 }
-
-var strategyToRun = 'sass'
 
 run(strategyToRun).then(tocArray => {
   if (tocArray.type === 'MARKDOWN') {
