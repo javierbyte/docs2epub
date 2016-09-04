@@ -33,7 +33,8 @@ Remember to add the original documentation licence. And feel free to open an iss
 * Uses [epub-gen](https://github.com/cyrilis/epub-gen) tuned for code.
 
 # Future improvements
-* Syntax highlight.
+* Easier and smarter way to add more documentation sources.
+* Cronjob to auto-update library.
 
 # Licence
 MIT.
