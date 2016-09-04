@@ -108,7 +108,7 @@ function generateEpubFromMarkdown (docObj) {
   })
 }
 
-var strategyToRun = 'react'
+var strategyToRun = 'sass'
 
 run(strategyToRun).then(tocArray => {
   if (tocArray.type === 'MARKDOWN') {
