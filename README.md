@@ -1,8 +1,11 @@
 Get your favorite docs as ebooks!
+Doc scrapper and ebook generator.
 
 [![docs2epub](docs/og.jpg)](http://javier.xyz/docs2epub/)
 
 # Library
+List of precompiled ebooks created with docs2epub.
+
 * React [[epub]](http://javier.xyz/docs2epub/download/react.epub) [[html]](http://javier.xyz/docs2epub/download/react.html). [stable]
 * Lodash [[epub]](http://javier.xyz/docs2epub/download/lodash.epub) [[html]](http://javier.xyz/docs2epub/download/lodash.html). [stable]
 * Sass [[epub]](http://javier.xyz/docs2epub/download/sass.epub) [[html]](http://javier.xyz/docs2epub/download/sass.html). [beta]
