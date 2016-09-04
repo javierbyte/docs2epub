@@ -15,7 +15,7 @@ The objective of this tool is to be a ready to go documentation parser and ebook
 
 It has a central processing and epub generator based on [strategies](https://github.com/javierbyte/docs2epub/tree/master/src/strategies).
 
-If you want to add your own ebook generator you'll have to add a 'strategy' to the the `/src/strategies/` dir that returns  a `docObj` object as described on [tocToArray.js](https://github.com/javierbyte/docs2epub/blob/master/src/tocToArray.js). And then require it on [run.js](https://github.com/javierbyte/docs2epub/blob/master/src/run.js).
+If you want to add your own ebook generator you'll have to add a 'strategy' to the the `/src/strategies/` dir that returns  a `docObj` object as described on [tocToArray.js](https://github.com/javierbyte/docs2epub/blob/master/src/tocToArray.js). And then require it on [run.js](https://github.com/javierbyte/docs2epub/blob/master/src/run.js#L3).
 
 Then run
 ```
@@ -23,6 +23,10 @@ Then run
 ```
 
 With `yourprojectid` being the key on the `run.js` require.
+
+And you'll have your `.epub` on the `docs/downloads` directory!
+
+Remember to add the original documentation licence. And feel free to open an issue here or create a PR if you want to add your generated ebook to the library.
 
 # Features
 * Pluggable system to add more documentation sources.
