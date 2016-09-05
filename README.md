@@ -6,12 +6,12 @@ Doc scrapper and ebook generator.
 # Library
 List of precompiled ebooks created with docs2epub.
 
-* React [[epub]](http://javier.xyz/docs2epub/download/react.epub) [[html]](http://javier.xyz/docs2epub/download/react.html). [stable]
-* Lodash [[epub]](http://javier.xyz/docs2epub/download/lodash.epub) [[html]](http://javier.xyz/docs2epub/download/lodash.html). [stable]
-* Sass [[epub]](http://javier.xyz/docs2epub/download/sass.epub) [[html]](http://javier.xyz/docs2epub/download/sass.html). [beta]
-* Underscore [[epub]](http://javier.xyz/docs2epub/download/underscore.epub) [[html]](http://javier.xyz/docs2epub/download/underscore.html). [beta]
-* express [[epub]](http://javier.xyz/docs2epub/download/express.epub) [[html]](http://javier.xyz/docs2epub/download/express.html). [beta]
-* angular2 [[epub]](http://javier.xyz/docs2epub/download/angular2.epub) [[html]](http://javier.xyz/docs2epub/download/angular2.html). [alpha]
+* React [[epub]](http://javier.xyz/docs2epub/download/react.epub) [stable]
+* Lodash [[epub]](http://javier.xyz/docs2epub/download/lodash.epub) [stable]
+* Sass [[epub]](http://javier.xyz/docs2epub/download/sass.epub) [beta]
+* Underscore [[epub]](http://javier.xyz/docs2epub/download/underscore.epub) [beta]
+* express [[epub]](http://javier.xyz/docs2epub/download/express.epub) [beta]
+* angular2 [[epub]](http://javier.xyz/docs2epub/download/angular2.epub) [alpha]
 
 # Generate your own ebook form docs
 The objective of this tool is to be a ready to go documentation parser and ebook generator (from scraping documentation sites or markdown).
