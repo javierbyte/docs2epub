@@ -1,5 +1,5 @@
 Get your favorite docs as ebooks!
-Doc scrapper and ebook generator.
+Doc scraper and ebook generator.
 
 [![docs2epub](docs/og.jpg)](http://javier.xyz/docs2epub/)
 
