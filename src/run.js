@@ -2,6 +2,7 @@ const tocToArray = require('./tocToArray')
 
 const strategies = {
   'react': require('./strategies/react/scrapperMd'),
+  'apolloreact': require('./strategies/apollo-react/scrapperMd'),
   'lodash': require('./strategies/lodash/scrapperMd'),
   'underscore': require('./strategies/underscore/scrapper'),
   'express': require('./strategies/express/scrapper'),
