@@ -1,4 +1,4 @@
-function getAboutPageTemplate (tocObj) {
+function getAboutPageTemplate(tocObj) {
   return `
 <div>
   <h3>About this book.</h3>
@@ -11,10 +11,10 @@ function getAboutPageTemplate (tocObj) {
     LICENCE of ${tocObj.title}: ${tocObj.licenceUrl}
   </div>
 </div>
-  `
+  `;
 }
 
-function getAboutPage (tocObj) {
+function getAboutPage(tocObj) {
   return {
     title: `${tocObj.title} documentation`,
     level: 0,
@@ -22,7 +22,7 @@ function getAboutPage (tocObj) {
       title: `${tocObj.title} documentation`,
       content: getAboutPageTemplate(tocObj)
     }
-  }
+  };
 }
 
-module.exports = getAboutPage
+module.exports = getAboutPage;

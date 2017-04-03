@@ -24,83 +24,92 @@ The `content.url` property should be either a html website (server side renderin
 Remember to specify a `type` `MARKDOWN` o `HTML`.
 */
 
-var _ = require('lodash')
-var read = require('node-readability')
-var cheerio = require('cheerio')
+var _ = require('lodash');
+var read = require('node-readability');
+var cheerio = require('cheerio');
 
-var getAboutPage = require('./getAboutPage')
+var getAboutPage = require('./getAboutPage');
 
-function htmlSafe (content) {
-  var $ = cheerio.load(content)
+function htmlSafe(content) {
+  var $ = cheerio.load(content);
 
-  var elToRemove = [
-    'script'
-  ]
+  var elToRemove = ['script'];
 
-  _.forEach(elToRemove, el => $(el).remove())
+  _.forEach(elToRemove, el => $(el).remove());
 
-  return $.html()
+  return $.html();
 }
 
-function resolveTocEl (tocEl, tocObj) {
-  var cleanHtml = tocObj.cleanHtml || function (noop) {
-    return noop
-  }
+function resolveTocEl(tocEl, tocObj) {
+  var cleanHtml = tocObj.cleanHtml ||
+    function(noop) {
+      return noop;
+    };
 
-  return new Promise(function (resolve, reject) {
-    read(tocEl.url, function (err, article) {
-      console.log('READED', tocEl.url)
+  return new Promise(function(resolve, reject) {
+    read(tocEl.url, function(err, article) {
+      console.log('READED', tocEl.url);
 
-      console.log(article.content)
+      console.log(article.content);
 
       if (err || !article) {
-        reject(err)
-        return
+        reject(err);
+        return;
       }
 
-      var title = article.title
-      var content = htmlSafe(cleanHtml(article.content))
+      var title = article.title;
+      var content = htmlSafe(cleanHtml(article.content));
 
-      article.close()
+      article.close();
 
-      resolve(_.assign(tocEl, {
-        result: {
-          title: title,
-          content: content
-        }
-      }))
-    })
-  })
+      resolve(
+        _.assign(tocEl, {
+          result: {
+            title: title,
+            content: content
+          }
+        })
+      );
+    });
+  });
 }
 
-function getContent (tocContent, tocObj) {
-  return new Promise(function (resolve, reject) {
-    if (_.every(tocContent, toc => {
-      return !toc.url || toc.result
-    })) {
-      resolve(tocContent)
-      return
+function getContent(tocContent, tocObj) {
+  return new Promise(function(resolve, reject) {
+    if (
+      _.every(tocContent, toc => {
+        return !toc.url || toc.result;
+      })
+    ) {
+      resolve(tocContent);
+      return;
     }
 
     var toSearchContentKey = _.findKey(tocContent, toc => {
-      return !(!toc.url || toc.result)
-    })
+      return !(!toc.url || toc.result);
+    });
 
-    resolveTocEl(tocContent[toSearchContentKey], tocObj).then(res => {
-      tocContent[toSearchContentKey] = res
-      resolve(getContent(tocContent, tocObj))
-    }).catch(reject)
-  })
+    resolveTocEl(tocContent[toSearchContentKey], tocObj)
+      .then(res => {
+        tocContent[toSearchContentKey] = res;
+        resolve(getContent(tocContent, tocObj));
+      })
+      .catch(reject);
+  });
 }
 
-function tocToArray (toc) {
-  return new Promise(function (resolve, reject) {
-    getContent(toc.content, toc).then(res => {
-      resolve(_.assign({}, toc, {
-        content: res
-      }))
-    }).catch(reject)
-  })
+function tocToArray(toc) {
+  return new Promise(function(resolve, reject) {
+    getContent(toc.content, toc)
+      .then(res => {
+        resolve(
+          _.assign({}, toc, {
+            content: res
+          })
+        );
+      })
+      .catch(reject);
+  });
 }
 
-module.exports = tocToArray
+module.exports = tocToArray;

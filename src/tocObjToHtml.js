@@ -1,6 +1,6 @@
-const _ = require('lodash')
+const _ = require('lodash');
 
-var getHtml = function (content) {
+var getHtml = function(content) {
   return `
 <html>
   <head>
@@ -41,25 +41,27 @@ var getHtml = function (content) {
     </div>
   </body>
 </html>
-  `
-}
+  `;
+};
 
-function tocObjToHtml (tocObj) {
-  return getHtml(_.map(tocObj.content, tocEl => {
-    if (tocEl.result) {
-      return `
+function tocObjToHtml(tocObj) {
+  return getHtml(
+    _.map(tocObj.content, tocEl => {
+      if (tocEl.result) {
+        return `
         <article>
           <h3>${tocEl.result.title}</h3>
           <div>${tocEl.result.content}</div>
         </article>
-      `
-    }
+      `;
+      }
 
-    if (tocEl.level === 0) return `<h1>${tocEl.title}</h1>`
-    if (tocEl.level === 1) return `<h2>${tocEl.title}</h2>`
+      if (tocEl.level === 0) return `<h1>${tocEl.title}</h1>`;
+      if (tocEl.level === 1) return `<h2>${tocEl.title}</h2>`;
 
-    return ''
-  }).join(''))
+      return '';
+    }).join('')
+  );
 }
 
-module.exports = tocObjToHtml
+module.exports = tocObjToHtml;
